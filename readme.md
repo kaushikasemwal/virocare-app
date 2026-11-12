@@ -1,0 +1,53 @@
+# ViroCare — Quarantine & Treatment Facility Operations
+
+ViroCare is a lightweight, single-file web application prototype built to coordinate daily patient care, temperature tracking, doctor reviews, discharges, and outcome monitoring for a **74-bed virus quarantine and treatment facility**.
+
+## Problem Statement
+
+An understaffed 74-bed quarantine facility operating at full occupancy relied on paper journals for daily temperature logs, causing:
+- Missed or duplicate temperature measurements.
+- Doctors visiting patients before nurses recorded their daily temperatures.
+- Delayed discharges when patients met the **3 consecutive fever-free days** criterion.
+- No visibility into facility mortality rates against the **15% mortality ceiling (85% survival benchmark)**.
+
+## Key Features
+
+- **Role-Based Access & Login Portal:** Separate workspaces for **Doctor**, **Nurse**, and **Administrator** roles with 1-click demo sign-in.
+- **Immediate Check Priority Queue:** High-fever patients (`≥ 38.0°C` by default) and manually flagged urgent cases are pinned to the top of every screen so they receive treatment first.
+- **Interactive 74-Bed Ward Map:** Color-coded grid across **Wing A (`A-01`–`A-10`)** and **Wing B (`B-01`–`B-64`)** showing bed status at a glance (*Immediate/Fever*, *Needs Temp*, *Needs Doctor*, *Discharge Ready*, *Up to Date*, *Vacant*) with 1-click role actions.
+- **Nurse Rapid Round Mode:** Bed-by-bed stepper with 1-tap temperature presets and auto-advance to speed up rounds for understaffed teams, plus same-day repeat-reading audit reasons.
+- **Dependency-Aware Doctor Queue:** Separates patients into **Ready for Visit** (temperature recorded) and **Blocked — Waiting on Nurse** (with a **Ping nurse** button and documented emergency override option).
+- **3-Day Fever-Free Discharge Workflow:** Automatically tracks consecutive fever-free days, requires a Doctor's discharge recommendation, and routes to Administrator sign-off to release the bed.
+- **Outcomes & Mortality Benchmark:** Tracks recoveries and per-patient mortality (releasing beds on death) against the ≤ 15% mortality benchmark, with a configurable fever threshold.
+- **Judge / Demo Controls:** **Prev Day** (`⏮`) and **Next Day** (`⏭`) buttons to step through multi-day fever-free streaks, plus **Reset demo data** (`↺`) to restore the 74-patient starting state.
+
+## Demo Login Credentials
+
+Use the 1-click sign-in buttons on the login screen or enter:
+
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **Doctor** | `doctor@virocare.org` | `demo123` |
+| **Nurse** | `nurse@virocare.org` | `demo123` |
+| **Administrator** | `admin@virocare.org` | `demo123` |
+
+## Tech Stack
+
+- **Frontend:** Vanilla HTML5, CSS3, and JavaScript (zero external dependencies or build step).
+- **Persistence:** Browser `localStorage` for patient records, daily rounds, audit logs, and simulated day state.
+
+## Deployment (GitHub Pages / Vercel)
+
+### GitHub Pages
+1. Create a public repository on GitHub and upload `index.html` and `README.md` to the root directory.
+2. Go to **Settings → Pages**.
+3. Under **Build and deployment**, select **Deploy from a branch**, choose `main` and `/ (root)`, and click **Save**.
+4. Your live site will be available at `https://<your-username>.github.io/<your-repo-name>/`.
+
+### Vercel
+1. Import the GitHub repository in Vercel.
+2. Keep the default static settings (no build command required) and click **Deploy**.
+
+## Disclaimer
+
+This is a front-end operational prototype using synthetic demonstration data. All clinical decisions remain with licensed medical staff.
